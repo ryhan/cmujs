@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CMU JS Sample</title>
+  <script src="cmu.js"></script>
+</head>
+<body>
+
+  <script>
+
+    var cmu = new CMUApi({
+      id: "9c55f614-c85c-4fb9-b9db-5583351f606e",
+      secret: "rtRPuoJZeGT5yiKQH6mFt9LZ1zMWFPb4z9olkJspfnPDygWukK_vjWuP"
+    })
+
+    console.log(cmu.schedule.getCourse("15251", "S14"));
+
+  </script>
+
+</body>
+</html>
