@@ -8,48 +8,83 @@ Aspiring to be a JavaScript library for CMU data. Basically a wrapper for [Scott
 
 1. First, [register your application](https://apis.scottylabs.org/apps) to get an app ID and an app secret key.
 
-2. Include [cmu.js](https://github.com/ryhan/cmujs/blob/master/cmu.js), and supply your app information using the following.
+2. Include [cmu.js](https://github.com/ryhan/cmujs/blob/master/cmu.js), and supply your app information using the following. Here's [a sample html file](https://github.com/ryhan/cmujs/blob/master/sample.html).
 ```javascript
   var cmu = new CMUApi({
     id: // YOUR APP ID , 
     secret: // YOUR APP SECRET KEY
   });
 ```
-If you're confused, look at [this sample html file](https://github.com/ryhan/cmujs/blob/master/sample.html).
 
-#### Scheduling Data
+#### Schedule Data
 
-To get a JSON object containing information about a course, simply pass a course number and semester (three characters, such as "S14") to `cmu.schedule.getCourse( course, semester )`. For example
+Access information about a particular course (for the current semester) by calling
 ```javascript
-cmu.schedule.getCourse("15251", "S14");
-
-/* returns */
-{
-  department_id: 15,
-  lectures: [
-    {
-      days: "TR"
-      instructors: "Sleator, Sutner"
-      location: "WEH 7500"
-      meetings: Array[1]
-      recitations: Array[7]
-      section: "Lec 1"
-      time_end: "04:20PM"
-      time_start: "03:00PM"
-    },
-    {
-      days: "MW"
-      instructors: "Kapoutsis"
-      location: "CMB 1064"
-      meetings: Array[1]
-      recitations: Array[1]
-      section: "Lec 2"
-      time_end: "02:50PM"
-      time_start: "01:30PM"
-    }],
-  name: "Great Theoretical Ideas in Computer Science",
-  number: "15251",
-  units: 12
-}
+// Returns course information for the current semester
+cmu.schedule.getCourse("15251");
 ```
 
+You can also specify a particular semester. Pass in "S14" for Spring 2014, "F14" for Fall 2014, etc.
+```javascript
+// Returns course information for the Spring of 2014
+cmu.schedule.getCourse("15251", "S14");
+```
+
+##### Sample Response
+
+Both of the above lines will return a json object containing the name of the course, the various sections offered, the names of the instructors, times/locations for lecture and recitation, among other bits of information.
+
+Read more on the [Scheduling API Documentation](https://apis.scottylabs.org/documentation/scheduling).
+```javascript
+{
+  "course": {
+    "department_id": 15,
+    "number": "15122",
+    "name": "Principles of Imperative Computation",
+    "units": 10,
+    "lectures":
+    [
+      ...
+      {
+        "instructors": "Gunawardena, Platzer",
+        "meetings": [{
+          "days": "TR",
+          "location": "GHC 4401",
+          "time_start": "09:00AM",
+          "time_end": "10:20AM",
+        }],
+        "section": "Lec 1",
+        "name": null,
+        "recitations":
+        [
+          ...
+          {
+            "instructors": "Instructor TBA",
+            "meetings": [{
+              "days": "WF",
+              "location": "GHC 5222",
+              "time_start": "09:30AM",
+              "time_end": "10:20AM",
+            }],
+            "section": "A",
+            "name": null
+          },
+          {
+            "instructors": "Instructor TBA",
+            "meetings": [{
+              "days": "WF",
+              "location": "GHC 5222",
+              "time_start": "10:30AM",
+              "time_end": "11:20AM",
+            }],
+            "section": "B",
+            "name": null
+          },
+          ...
+        ]
+      }
+      ...
+    ]
+  }
+}
+```
