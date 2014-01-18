@@ -22,7 +22,7 @@ class @API
 class @ScheduleAPI extends API
 
   getCourse: (course_number, semester) ->
-    unless semester? then semester = @_current_semester
+    semester = @_current_semester unless semester?
     response = @_get "schedule/#{ semester }/courses/#{ course_number }"
     response.course if response?
 
