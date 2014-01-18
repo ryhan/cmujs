@@ -5,16 +5,16 @@ class @API
 
   constructor: (options = {}) ->
 
-    @id = options.id || DEFAULT_APP_ID
-    @secret = options.secret || DEFAULT_APP_SECRET
-    @api_endpoint = 'https://apis.scottylabs.org/v1/'
+    @_id = options.id || DEFAULT_APP_ID
+    @_secret = options.secret || DEFAULT_APP_SECRET
+    @_api_endpoint = 'https://apis.scottylabs.org/v1/'
 
     date = new Date()
-    @current_semester = if date.getMonth() < 5 then 'S' else 'F'
-    @current_semester += date.getFullYear() - 2000
+    @_current_semester = if date.getMonth() < 5 then 'S' else 'F'
+    @_current_semester += date.getFullYear() - 2000
 
   _get: (request) ->
-    url = "#{@api_endpoint+request}?app_id=#{@id}&app_secret_key=#{@secret}"
+    url = "#{@_api_endpoint+request}?app_id=#{@_id}&app_secret_key=#{@_secret}"
     xmlHttp = null
     xmlHttp = new XMLHttpRequest
     xmlHttp.open 'GET', url, false
@@ -25,7 +25,7 @@ class @API
 class @ScheduleAPI extends API
 
   getCourse: (course_number, semester) ->
-    unless semester? then semester = @current_semester
+    unless semester? then semester = @_current_semester
     response = @_get "schedule/#{semester}/courses/#{course_number}"
     response.course if response?
 
