@@ -16,18 +16,54 @@ Aspiring to be a JavaScript library for CMU data. Basically a wrapper for [Scott
   });
 ```
 
-#### Schedule Data
+### Directory Data
+
+Lookup a person's public directory information using their Andrew ID
+```javascript
+// Returns directory information for the user with andrew ID "zhixians"
+cmu.schedule.findAndrewID("zhixians");
+```
+
+##### Sample Response
+
+Calling the above line will return a json object containing the name of the person, their email, their title, their department, and affiliated schools, among other bits of information.
+
+Read more on the [Scheduling API Documentation](https://apis.scottylabs.org/documentation/scheduling).
+```javascript
+{
+  "person": {
+    "andrew_id": "zhixians",
+    "name": "Tom Shen",
+    "last_name": "Shen",
+    "first_name": "Tom",
+    "email": "tomshen@cmu.edu",
+    "phone": null,
+    "role": "Student",
+    "title": "Student Researcher",
+    "student_class": "Sophomore",
+    "student_level": "Undergrad",
+    "department": "Computer Science",
+    "affiliated_schools": [
+      "School of Computer Science",
+      "Student Employment",
+      "SCS - School of Computer Science"
+    ]
+  }
+}
+```
+
+### Schedule Data
 
 Access information about a particular course (for the current semester) by calling
 ```javascript
 // Returns course information for the current semester
-cmu.schedule.getCourse("15251");
+cmu.schedule.findCourse("15251");
 ```
 
 You can also specify a particular semester. Pass in "S14" for Spring 2014, "F14" for Fall 2014, etc.
 ```javascript
 // Returns course information for the Spring of 2014
-cmu.schedule.getCourse("15251", "S14");
+cmu.schedule.findCourse("15251", "S14");
 ```
 
 ##### Sample Response
