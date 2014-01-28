@@ -28,7 +28,7 @@ cmu.schedule.findAndrewID("zhixians");
 
 Calling the above line will return a json object containing the name of the person, their email, their title, their department, and affiliated schools, among other bits of information.
 
-Read more on the [Scheduling API Documentation](https://apis.scottylabs.org/documentation/scheduling).
+Read more on the [Directory API Documentation](https://apis.scottylabs.org/documentation/directory).
 ```javascript
 {
   "person": {
