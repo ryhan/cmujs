@@ -21,7 +21,7 @@ Aspiring to be a JavaScript library for CMU data. Basically a wrapper for [Scott
 Lookup a person's public directory information using their Andrew ID
 ```javascript
 // Returns directory information for the user with andrew ID "zhixians"
-cmu.schedule.findAndrewID("zhixians");
+cmu.directory.findAndrewId("zhixians");
 ```
 
 ##### Sample Response
