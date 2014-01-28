@@ -21,11 +21,18 @@ class @API
 
 class @ScheduleAPI extends API
 
-  getCourse: (course_number, semester) ->
+  findCourse: (course_number, semester) ->
     semester = @_current_semester unless semester?
-    response = @_get "schedule/#{ semester }/courses/#{ course_number }"
+    response = @_get "schedule/#{ encodeURIComponent semester }/courses/#{ encodeURIComponent course_number }"
     response.course if response?
+
+class @DirectoryAPI extends API
+
+  findAndrewId: (andrewID) ->
+    response = @_get "directory/andrewid/#{ encodeURIComponent andrewID }"
+    response.person if response?
 
 class @CMUApi
   constructor: (options) ->
     @schedule = new ScheduleAPI options
+    @directory = new DirectoryAPI options

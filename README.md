@@ -11,7 +11,7 @@ Aspiring to be a JavaScript library for CMU data. Basically a wrapper for [Scott
 2. Include [cmu.js](https://github.com/ryhan/cmujs/blob/master/cmu.js), and supply your app information using the following. Here's [a sample html file](https://github.com/ryhan/cmujs/blob/master/sample.html).
 ```javascript
   var cmu = new CMUApi({
-    id: // YOUR APP ID , 
+    id: // YOUR APP ID ,
     secret: // YOUR APP SECRET KEY
   });
 ```
